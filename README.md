@@ -7,7 +7,7 @@
 - **Поиск по русским и английским названиям и ключевым словам** — `привет`, `hello`, `flag`, `флаг` — всё находится.
 - **Совместимость с React 16.8 – 19** — хуки, `lazy`/`Suspense`, `createRoot`. Никаких конфликтов зависимостей.
 - **Текстуры Twemoji** — одинаковые смайлы на Windows, macOS, Android и Linux.
-- **Ноль зависимостей** (кроме `react` и `react-dom`).
+- Без сторонних зависимостей. **React и React DOM** — peer-зависимости (устанавливаются в вашем проекте).
 - **Интеграция с `contenteditable`** — вставляет эмодзи точно туда, где стоит курсор.
 - **Идеальный рендер составных эмодзи** (радужный флаг 🏳️‍🌈, семьи 👨‍👩‍👧‍👦, тона кожи 👍🏽) благодаря `Intl.Segmenter`.
 - **941 эмодзи** в наборе, включая 259 флагов стран с русскими названиями (`Россия`, `Германия`, `США`).
@@ -21,4 +21,29 @@
 ## Установка
 
 ```bash
-npm install smileed-nexus
+npm install @speednexus_messenger/smileed-nexus
+```
+
+**Пример**:
+
+```jsx
+import { useState } from 'react';
+import { SmileedNexus } from '@speednexus_messenger/smileed-nexus';
+import '@speednexus_messenger/smileed-nexus/styles.css';
+
+function App() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>😀</button>
+      {open && (
+        <SmileedNexus
+          onSelect={(emoji) => console.log(emoji)}
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </>
+  );
+}
+```
